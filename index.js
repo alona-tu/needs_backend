@@ -22,12 +22,12 @@ const io = socketio(server)
 
 const cors = require('cors')
 const corsOptions = {
-  credentials: true,
-  origin: function (origin, cb) {
-    // console.log('origin:', origin)
-    cb(null, true)
-  },
-}
+  origin: [
+    'https://needs.uniday.tw',
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
 const router = require('./router')
 
@@ -38,8 +38,8 @@ app.use(cors(corsOptions))
 
 //引用自己的route資料夾
 app.use(express.static(__dirname + '/public'))
-app.use('/login-api', require(__dirname + '/src/login/login_api'))
-app.use('/signup-api', require(__dirname + '/src/login/signup_api'))
+app.use('/login-api', require(__dirname + '/src/Login/login_api'))
+app.use('/signup-api', require(__dirname + '/src/Login/signup_api'))
 app.use('/bk-products-api', require(__dirname + '/src/backend-ms/products'))
 app.use('/bk-contracts-api', require(__dirname + '/src/backend-ms/contracts'))
 app.use('/bk-orders-api', require(__dirname + '/src/backend-ms/orders'))
