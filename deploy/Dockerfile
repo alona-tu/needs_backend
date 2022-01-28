@@ -1,10 +1,10 @@
-FROM node:latest
+FROM node:12-alpine
 
 WORKDIR /var/www/html
 
 COPY . .
 
-RUN npm install
+RUN npm ci
 
 EXPOSE 5000
 
